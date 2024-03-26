@@ -6,3 +6,8 @@ dataframe = spark.read.csv(path=r'C:\Users\AKASH.S\Documents\data.csv',header=Tr
 dataframe.show()
 dataframe.printSchema()
 
+# reading the csv file using format function
+
+df = spark.read.format('csv').option(key='header',value=True).option(key='inferSchema',value=True).load(path=r'C:\Users\AKASH.S\Documents\data.csv')
+df.show()
+df.printSchema()
