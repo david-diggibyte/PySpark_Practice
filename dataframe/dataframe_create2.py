@@ -26,4 +26,12 @@ df.show()
 df.show(n=3,truncate=10,vertical=True) # with all parameter in show
 print(df.take(2))    # take is used to return 2 record only
 print(df.collect())   # return all record
-df.printSchema()
+df.printSchema()      # return the column datatype
+print(df.count())     # return the column count
+df.select('Name','Department').show()  # return selected column only
+df.filter((df['Salary']>10000) | (df['Company']=='diggibyte')).show()  # filtering the records
+df.where((df['Salary']>10000) & (df['Company'] == 'diggibyte')).show()  # filtering the record
+df.filter(df['Name'].like('_a%')).show()    # filtering the record based on name have second word a only
+df.sort('Salary', ascending=False).show()  # sorting descanding
+df.describe().show()
+print(df.columns)  # return column name only.
