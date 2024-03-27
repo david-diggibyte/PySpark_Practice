@@ -1,4 +1,5 @@
 from pyspark.sql import SparkSession
+from pyspark.sql.types import *
 
 spark = SparkSession.builder.appName('Create dataframe ').getOrCreate()
 
@@ -12,8 +13,17 @@ data = [
         (1,'David',22,'data engineer',10000,'diggibyte'),
         (2,'K7',23,'data engineer',20000,'diggibyte')
         ]
-schema = ('ID','Name','Age','Department','Salary','Company')
+#schema = ('ID','Name','Age','Department','Salary','Company')
+schema = StructType([StructField(name='ID',dataType =IntegerType()),
+                     StructField(name='Name',dataType=StringType()),
+                     StructField(name='Age',dataType=IntegerType()),
+                     StructField(name='Department',dataType=StringType()),
+                     StructField(name='Salary',dataType=IntegerType()),
+                     StructField(name='Company',dataType=StringType())])
 
 df = spark.createDataFrame(data=data,schema=schema)
 df.show()
-print(df.collect())
+df.show(n=3,truncate=10,vertical=True) # with all parameter in show
+print(df.take(2))    # take is used to return 2 record only
+print(df.collect())   # return all record
+df.printSchema()
