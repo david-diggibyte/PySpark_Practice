@@ -1,9 +1,9 @@
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import *
+from pyspark.sql.functions import lit,col
 
 spark = SparkSession.builder.appName('practicing withcolumn function').getOrCreate()
 
-df = spark.read.csv(path=r'C:\Users\AKASH.S\Documents\for_str_fun.csv',header=True)
+df = spark.read.csv(path=r'C:\Users\AKASH.S\Documents\Documents_DE\Datasets\for_str_fun.csv',header=True)
 df.show()
 df.printSchema()
 df.select(col('degree')).show()  # select column using col function
@@ -39,4 +39,12 @@ df4.printSchema()
 df5 = df4.withColumn('AGE',col('AGE')*2)
 df5.show()
 
+# using withcolumnrename to changing the column name
 
+df6 = df5.withColumnRenamed('Bonus','new year bonus').withColumnRenamed('name','first_name')
+df6.show()
+
+# drop the column using drop func
+
+df7 = df6.drop('new year bonus', ' degree')
+df7.show()
