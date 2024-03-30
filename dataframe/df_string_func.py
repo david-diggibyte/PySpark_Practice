@@ -26,15 +26,25 @@ df.select('name').show()
 # tname.show()
 # # substring function using df
 #
-# sub_string = df.withColumn('sub_string',substring(df['name'],2,5))
-# sub_string.show()
-
+sub_string = df.withColumn('sub_string',substring(df['name'],2,5))
+sub_string.show()
+df.select(substring(col('name'),3,6)).show()
 # substring index function
 
 # using withcolumn
-sub_string_index1 = df.withColumn('positive substr index',substring_index(col('degree'),' ',1))
-sub_string_index1.show()
-sub_string_index2 = df.withColumn('negative substr index',substring_index(col('degree'),' ',-1))
-sub_string_index2.show()
-# using select
-df.select('*',substring_index(col('name'),' ',1).alias('sub_name')).show()
+# sub_string_index1 = df.withColumn('positive substr index',substring_index(col('degree'),' ',1))
+# sub_string_index1.show()
+# sub_string_index2 = df.withColumn('negative substr index',substring_index(col('degree'),' ',-1))
+# sub_string_index2.show()
+# # using select
+# df.select('*',substring_index(col('name'),' ',1).alias('sub_name')).show()
+
+addcolum = df.withColumn('city',lit('Bangalore,coimbatore,kallakuruchi'))
+addcolum.show(truncate=False)
+#addcolum.withColumn('substr_index',substring_index('city',',',-1)).show()
+
+# split function
+
+addcolum.withColumn('spit_city',split('city',',')).show(truncate=False)
+addcolum.select(split(col('city'),',',2).alias('split_city')).show(truncate=False)
+
