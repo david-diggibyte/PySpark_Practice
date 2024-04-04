@@ -12,14 +12,14 @@ df2.printSchema()
 
 # UNION FUNCTION
 
-print('UNION:')
-df1_union_df2 = df1.union(df2).orderBy('id')
+print('UNION and DISTINCT:')
+df1_union_df2 = df1.union(df2).distinct().orderBy('id')
 df1_union_df2.show()
 
 # UNION ALL FUNCTION
 
 print('UNION ALL:')
-df1_unionall_df2 = df1.unionAll(df2).distinct().orderBy('id')
+df1_unionall_df2 = df1.unionAll(df2).orderBy('id')
 df1_unionall_df2.show()
 
 data1 = [(1,'david'),(2,'susai'),(3,'nathan')]
