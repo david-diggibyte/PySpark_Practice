@@ -52,5 +52,8 @@ print('NA.DROP :')
 df1_na_drop = df1.na.drop()
 df1_na_drop.show()
 
+df1.dropna(subset=['id']).show()
+
+
 
 
